@@ -5,7 +5,7 @@ import { AppContext } from "../context/context";
 
 const BlogDetails = () => {
   const { backendUrl } = useContext(AppContext)
-  const { id } = useParams(); // Get `id` from route params
+  const { id } = useParams();
   const [blogData, setBlogData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,7 +31,6 @@ const BlogDetails = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        {/* Header Section */}
         <div className="p-6 border-b border-gray-200 flex items-center gap-2">
           <div className="">
             <img
@@ -50,7 +49,6 @@ const BlogDetails = () => {
           </div>
         </div>
 
-        {/* Blog Image */}
         <div className="relative">
           <img
             src={blogData.image}

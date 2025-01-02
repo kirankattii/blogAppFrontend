@@ -3,16 +3,22 @@ import { toast } from "react-toastify";
 import { AppContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import AddBlogModal from "../components/AddBlogModal";
-import EditBlogModal from "../components/EditBlogModal.jsx" // Assuming you will create this component
+import EditBlogModal from "../components/EditBlogModal.jsx"
 import { Pencil, Trash2 } from 'lucide-react';
 
 
 const MyBlogs = () => {
-  const { userBlogs, backendUrl, setUserBlogs, token, userData, getUserBlogsData, getBlogsData } = useContext(AppContext); // Add setUserBlogs 
+  const { userBlogs, backendUrl, setUserBlogs, token, userData, getUserBlogsData, getBlogsData } = useContext(AppContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State for Edit modal
-  const [selectedBlog, setSelectedBlog] = useState(null); // To store the blog to edit
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState(null);
   const navigate = useNavigate();
+
+
+  if (!userBlogs) {
+    return <div>Loading user data...</div>;
+  }
+
 
   const handleDelete = async (blogId) => {
     if (window.confirm("Are you sure you want to delete this blog?")) {
@@ -20,7 +26,7 @@ const MyBlogs = () => {
         const response = await fetch(`${backendUrl}/api/news/${blogId}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': token, // Assuming you store the token in localStorage
+            'Authorization': token,
           },
         });
         getUserBlogsData();

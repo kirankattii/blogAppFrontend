@@ -12,6 +12,12 @@ const Home = () => {
   const limit = 5;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+  if (!blogs) {
+    return <div>Loading  data...</div>;
+  }
+
+
   const totalPages = Math.ceil(blogs.length / limit);
   const navigate = useNavigate()
   const handlePageChange = async (page) => {
