@@ -49,8 +49,13 @@ const AddBlogModal = ({ isOpen, onClose, backendUrl }) => {
         },
       });
 
-      toast.success("Blog created successfully");
-      getBlogsData()
+      console.log("Blog created successfully", response);
+
+      if (response?.data?.success) {
+
+        toast.success("Blog created successfully");
+        getBlogsData()
+      }
       onClose();
       // Clear form fields after successful submission
       setFormData({
